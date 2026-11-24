@@ -1,0 +1,29 @@
+# Crew pairing rules and cost weights.
+# All times in minutes. Values are simplified but realistic; simplified versions of common airline limits.
+# Constitution principle III: no rule parameter may be hard-coded in solver logic.
+
+connection:
+  min_same_aircraft: 30      # crew stays with the same tail number
+  min_aircraft_change: 60    # crew walks to another gate/aircraft
+  max_sit: 240               # longest wait between two flights inside a duty
+
+duty:
+  briefing: 60               # before the first flight of a duty
+  debriefing: 30             # after the last flight of a duty
+  max_duty_time: 780         # 13 h, briefing to debriefing
+  max_flight_time: 540       # 9 h block time per duty
+  max_legs: 5
+
+rest:
+  min_rest: 600              # 10 h between duties (layover)
+
+pairing:
+  max_days: 4
+  # crew bases are chosen from the data in phase 1
+
+cost:                        # relative weights, tuned in later phases
+  duty_day: 1000
+  hotel_night: 300
+  deadhead: 800
+  sit_minute: 1
+  time_away_from_base_minute: 0.5
