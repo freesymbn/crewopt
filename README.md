@@ -50,10 +50,10 @@ uv run pytest
 | 8 | Production: job API, queue, monitoring, security, environments |
 
 ## References
-- Kasirzadeh, Saddoune, Soumis (2017). *Airline crew scheduling: models, algorithms, and data sets.*
-  EURO Journal on Transportation and Logistics.
 - Zeren, Özcan, Deveci (2024). *An adaptive greedy heuristic for large scale airline crew pairing
   problems.* Journal of Air Transport Management.
+- Kasirzadeh, Saddoune, Soumis (2017). *Airline crew scheduling: models, algorithms, and data sets.*
+  EURO Journal on Transportation and Logistics.
 - Parmentier, Meunier (2019). *Aircraft routing and crew pairing: updated algorithms at Air France.*
 - Yaakoubi, Soumis, Lacoste-Julien (2020). *Machine learning in airline crew pairing to construct
   initial clusters for dynamic constraint aggregation.* EURO Journal on Transportation and Logistics.
