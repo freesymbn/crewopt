@@ -52,3 +52,6 @@ San Juan flights) is consistent with an independent field.
    choice must be revisited in Phase 2 (more bases, or a sub-network around chosen bases).
 3. **Example rotation** in the summary shows a break for the busiest aircraft; the route string
    should mark where the break is (cosmetic, Phase 2 backlog).
+4. **`load_airports()` returns a cached, shared DataFrame**: a caller that mutates it would
+   affect every later caller. Not an issue yet (only tests use it); return a copy before
+   Phase 6 starts using coordinates.
