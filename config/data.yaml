@@ -1,0 +1,25 @@
+# Phase 1 data pipeline configuration (spec: specs/001-data-pipeline/spec.md).
+# Constitution principle III: selection and threshold values live here, not in code.
+
+source:
+  raw_dir: data/raw/bts
+  file: null                  # null → the single .zip/.csv found in raw_dir
+
+selection:
+  carrier: F9                 # placeholder until `compare-carriers` (task T037)
+  carrier_selection_reason: "placeholder until compare-carriers is run on real data"
+  week_start: 2026-09-14      # Monday of the selected week
+  buffer_days: 3              # pairings last at most 4 days
+
+validation:
+  block_minutes: {min: 20, max: 480}
+  elapsed_tolerance_minutes: 5
+  tail_continuity_min_share: 0.95
+
+exploration:
+  base_max: 3
+  base_min_share: 0.5
+  candidate_carriers: [F9, NK]
+
+output:
+  processed_dir: data/processed

@@ -3,14 +3,23 @@ revision = 5
 requires-python = ">=3.12"
 resolution-markers = [
     "python_full_version >= '3.15' and sys_platform == 'win32'",
-    "python_full_version == '3.14.*' and sys_platform == 'win32'",
     "python_full_version >= '3.15' and sys_platform == 'emscripten'",
-    "python_full_version == '3.14.*' and sys_platform == 'emscripten'",
     "python_full_version >= '3.15' and sys_platform != 'emscripten' and sys_platform != 'win32'",
+    "python_full_version == '3.14.*' and sys_platform == 'win32'",
+    "python_full_version == '3.14.*' and sys_platform == 'emscripten'",
     "python_full_version == '3.14.*' and sys_platform != 'emscripten' and sys_platform != 'win32'",
     "python_full_version < '3.14' and sys_platform == 'win32'",
     "python_full_version < '3.14' and sys_platform == 'emscripten'",
     "python_full_version < '3.14' and sys_platform != 'emscripten' and sys_platform != 'win32'",
+]
+
+[[package]]
+name = "airportsdata"
+version = "20261123"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/01/da/c90a6292ae138cf95a9fe61d8baa7b35726a3d4a410efe89ba2c681f54a5/airportsdata-20261123.tar.gz", hash = "sha256:190d5af18f9eeaeb5d107db2741ec3ab76e972940343cdb60a3b2598f9fd05ca", size = 949064, upload-time = "2026-11-23T10:26:16.071Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/cb/c7/f24f13613ba235bf11c8f4cd0cfed74ba866b6317a3a39cdb491c5000247/airportsdata-20261123-py3-none-any.whl", hash = "sha256:37b0bd320be342fc271288d89945be4f14ae5a7da22dd840de45f023865ccddd", size = 937354, upload-time = "2026-11-23T10:26:14.404Z" },
 ]
 
 [[package]]
@@ -506,6 +515,7 @@ name = "crewopt"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
+    { name = "airportsdata" },
     { name = "highspy" },
     { name = "lightgbm" },
     { name = "networkx" },
@@ -526,6 +536,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
+    { name = "airportsdata", specifier = ">=20241001" },
     { name = "highspy", specifier = ">=1.8" },
     { name = "lightgbm", specifier = ">=4.5" },
     { name = "networkx", specifier = ">=3.3" },

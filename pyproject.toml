@@ -13,6 +13,7 @@ dependencies = [
     "pyyaml>=6.0",
     "scikit-learn>=1.5",
     "lightgbm>=4.5",
+    "airportsdata>=20241001",
 ]
 
 [dependency-groups]
