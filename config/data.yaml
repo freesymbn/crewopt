@@ -6,9 +6,12 @@ source:
   file: null                  # null → the single .zip/.csv found in raw_dir
 
 selection:
-  carrier: F9                 # placeholder until `compare-carriers` (task T037)
-  carrier_selection_reason: "placeholder until compare-carriers is run on real data"
-  week_start: 2026-09-14      # Monday of the selected week
+  carrier: F9
+  carrier_selection_reason: >-
+    Frontier (F9): A320-family-only fleet, ~4.2k flights/week, 76 airports, 166 aircraft in Sep 2026
+    BTS data; size close to the Turkish Airlines A320 crew pairing study. Spirit (NK) reports no
+    flights in Sep 2026; Allegiant (G4) is smaller and no longer single-family.
+  week_start: 2026-09-14      # Monday; no federal holiday (Labor Day is Sep 7), no DST change
   buffer_days: 3              # pairings last at most 4 days
 
 validation:

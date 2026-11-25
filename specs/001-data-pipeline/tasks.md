@@ -107,12 +107,12 @@ tasks first and see them fail before the implementation tasks.
 
 ## Phase 7: Real data & polish
 
-- [ ] T036 Download one BTS month (manual if fetch is blocked) into data/raw/bts/ per data/README.md
-- [ ] T037 Run compare-carriers, choose carrier + week, record reason in config/data.yaml
-- [ ] T038 Run build on real data; all blocking checks pass; review summary (SC-001, SC-005, SC-006)
-- [ ] T039 Hand-check ≥10 flights incl. 2 midnight crossings and 1 HNL/SJU flight (SC-002); record in specs/001-data-pipeline/verification.md
-- [ ] T040 [P] Update data/README.md with exact commands (SC-007)
-- [ ] T041 Run quickstart.md end to end; `uv run pytest` and `ruff` clean
+- [x] T036 Download one BTS month (manual if fetch is blocked) into data/raw/bts/ per data/README.md
+- [x] T037 Run compare-carriers, choose carrier + week, record reason in config/data.yaml
+- [x] T038 Run build on real data; all blocking checks pass; review summary (SC-001, SC-005, SC-006)
+- [x] T039 Hand-check ≥10 flights incl. 2 midnight crossings and 1 HNL/SJU flight (SC-002); record in specs/001-data-pipeline/verification.md
+- [x] T040 [P] Update data/README.md with exact commands (SC-007)
+- [x] T041 Run quickstart.md end to end; `uv run pytest` and `ruff` clean
 
 ---
 
