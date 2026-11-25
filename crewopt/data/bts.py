@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import zipfile
 from pathlib import Path
+from urllib.request import urlretrieve
 
 import pandas as pd
 
@@ -67,3 +68,20 @@ def read_raw(path: str | Path) -> pd.DataFrame:
     df["distance"] = df["distance"].round().astype("Int64")
     df["tail_number"] = df["tail_number"].str.strip().replace("", pd.NA)
     return df
+
+
+def fetch(year: int, month: int, dest: str | Path) -> Path:
+    """Download a BTS month file. Raises OSError with manual-download instructions on failure."""
+    dest = Path(dest)
+    dest.mkdir(parents=True, exist_ok=True)
+    url = PREZIP_URL.format(year=year, month=month)
+    target = dest / url.rsplit("/", 1)[-1]
+    try:
+        urlretrieve(url, target)
+    except Exception as exc:  # network blocked, 404, timeout...
+        raise OSError(
+            f"download failed ({exc}).\n"
+            f"Download it manually in a browser:\n  {url}\n"
+            f"and save the zip into:\n  {dest}"
+        ) from exc
+    return target

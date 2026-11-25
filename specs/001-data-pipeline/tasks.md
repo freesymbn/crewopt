@@ -87,9 +87,9 @@ tasks first and see them fail before the implementation tasks.
 **Goal**: Exploration summary and crew-base proposal.
 **Independent Test**: Summary totals match dataset row counts.
 
-- [ ] T029 [P] [US3] Tests for summary totals, base-proposal rule, one-tail daily rotation in tests/data/test_explore.py
-- [ ] T030 [US3] Implement exploration summary and base proposal in crewopt/data/explore.py
-- [ ] T031 [US3] Write summary.md from pipeline in crewopt/data/pipeline.py
+- [x] T029 [P] [US3] Tests for summary totals, base-proposal rule, one-tail daily rotation in tests/data/test_explore.py
+- [x] T030 [US3] Implement exploration summary and base proposal in crewopt/data/explore.py
+- [x] T031 [US3] Write summary.md from pipeline in crewopt/data/pipeline.py
 
 ---
 
@@ -98,10 +98,10 @@ tasks first and see them fail before the implementation tasks.
 **Goal**: Evidence-based carrier choice.
 **Independent Test**: Comparison on fixture lists each candidate with weekly flights, airports, tails.
 
-- [ ] T032 [P] [US4] Tests for carrier comparison table in tests/data/test_explore.py
-- [ ] T033 [US4] Implement carrier comparison in crewopt/data/explore.py
-- [ ] T034 [US4] Implement CLI `compare-carriers` in crewopt/data/__main__.py
-- [ ] T035 [US4] Implement CLI `fetch` with manual-download fallback message in crewopt/data/bts.py and crewopt/data/__main__.py
+- [x] T032 [P] [US4] Tests for carrier comparison table in tests/data/test_explore.py
+- [x] T033 [US4] Implement carrier comparison in crewopt/data/explore.py
+- [x] T034 [US4] Implement CLI `compare-carriers` in crewopt/data/__main__.py
+- [x] T035 [US4] Implement CLI `fetch` with manual-download fallback message in crewopt/data/bts.py and crewopt/data/__main__.py
 
 ---
 

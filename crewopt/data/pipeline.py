@@ -15,6 +15,7 @@ import crewopt
 from crewopt.data.bts import read_raw
 from crewopt.data.clean import clean
 from crewopt.data.config import DataConfig
+from crewopt.data.explore import render_summary_md, summarize
 from crewopt.data.validate import ValidationReport, validate
 
 
@@ -26,6 +27,7 @@ class BuildResult:
     meta_path: Path
     validation: ValidationReport
     validation_path: Path
+    summary_path: Path
 
 
 def _sha256_file(path: Path) -> str:
@@ -73,6 +75,9 @@ def build(cfg: DataConfig) -> BuildResult:
         tail_continuity_min_share=cfg.tail_continuity_min_share,
     )
     validation_path.write_text(json.dumps(report.to_dict(), indent=2) + "\n")
+    summary_path = out_dir / f"flights_{cfg.dataset_id}.summary.md"
+    summary = summarize(result.flights, cfg.base_max, cfg.base_min_share)
+    summary_path.write_text(render_summary_md(summary, cfg.dataset_id))
 
     metadata = {
         "dataset_id": cfg.dataset_id,
@@ -92,4 +97,6 @@ def build(cfg: DataConfig) -> BuildResult:
         "valid": report.valid,
     }
     meta_path.write_text(json.dumps(metadata, indent=2, sort_keys=True) + "\n")
-    return BuildResult(result.flights, metadata, flights_path, meta_path, report, validation_path)
+    return BuildResult(
+        result.flights, metadata, flights_path, meta_path, report, validation_path, summary_path
+    )

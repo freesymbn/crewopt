@@ -64,3 +64,8 @@ def test_cli_exit_code_2_on_invalid_dataset(tmp_path, config_file):
     )
     assert proc.returncode == 2, proc.stderr
     assert "valid: false" in proc.stdout
+
+
+def test_build_writes_summary(config_file):
+    res = build(load_config(config_file))
+    assert "Crew-base proposal" in res.summary_path.read_text()
