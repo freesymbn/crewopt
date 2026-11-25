@@ -22,10 +22,7 @@ runs/
 .idea/
 .vscode/
 
-# AI-assisted workflow and personal notes stay local (not part of the public project)
-CLAUDE.md
-.claude/
-.specify/
-specs/
+# Personal notes and instructions stay local
+CLAUDE.local.md
 docs/
 notes/
