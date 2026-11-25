@@ -15,6 +15,7 @@ import crewopt
 from crewopt.data.bts import read_raw
 from crewopt.data.clean import clean
 from crewopt.data.config import DataConfig
+from crewopt.data.validate import ValidationReport, validate
 
 
 @dataclass
@@ -23,6 +24,8 @@ class BuildResult:
     metadata: dict
     flights_path: Path
     meta_path: Path
+    validation: ValidationReport
+    validation_path: Path
 
 
 def _sha256_file(path: Path) -> str:
@@ -59,7 +62,17 @@ def build(cfg: DataConfig) -> BuildResult:
     flights_path = out_dir / f"flights_{cfg.dataset_id}.parquet"
     meta_path = out_dir / f"flights_{cfg.dataset_id}.meta.json"
 
+    validation_path = out_dir / f"flights_{cfg.dataset_id}.validation.json"
+
     result.flights.to_parquet(flights_path, index=False)
+    report = validate(
+        result.flights,
+        block_min=cfg.block_min,
+        block_max=cfg.block_max,
+        elapsed_tolerance=cfg.elapsed_tolerance,
+        tail_continuity_min_share=cfg.tail_continuity_min_share,
+    )
+    validation_path.write_text(json.dumps(report.to_dict(), indent=2) + "\n")
 
     metadata = {
         "dataset_id": cfg.dataset_id,
@@ -76,6 +89,7 @@ def build(cfg: DataConfig) -> BuildResult:
         "airportsdata_version": version("airportsdata"),
         "counts": result.counts,
         "data_sha256": data_checksum(result.flights),
+        "valid": report.valid,
     }
     meta_path.write_text(json.dumps(metadata, indent=2, sort_keys=True) + "\n")
-    return BuildResult(result.flights, metadata, flights_path, meta_path)
+    return BuildResult(result.flights, metadata, flights_path, meta_path, report, validation_path)

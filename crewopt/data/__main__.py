@@ -23,7 +23,14 @@ def _cmd_build(args: argparse.Namespace) -> int:
     print(f"final: {c['final']}  (buffer: {c['buffer']})")
     print(f"flights: {res.flights_path}")
     print(f"metadata: {res.meta_path}")
-    return 0
+    print(f"validation: {res.validation_path}")
+    for c in res.validation.checks:
+        if c.status != "pass":
+            print(
+                f"  [{c.severity}] {c.id}: {c.status} ({c.count}) e.g. {', '.join(c.examples[:3])}"
+            )
+    print(f"valid: {str(res.validation.valid).lower()}")
+    return 0 if res.validation.valid else 2
 
 
 def main(argv: list[str] | None = None) -> int:

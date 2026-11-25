@@ -41,3 +41,26 @@ def test_cli_build(config_file):
     )
     assert proc.returncode == 0, proc.stderr
     assert "final: 11" in proc.stdout
+
+
+def test_build_writes_validation_report(config_file):
+    res = build(load_config(config_file))
+    report = json.loads(res.validation_path.read_text())
+    assert report["valid"] is True
+    assert json.loads(res.meta_path.read_text())["valid"] is True
+
+
+def test_cli_exit_code_2_on_invalid_dataset(tmp_path, config_file):
+    import yaml
+
+    raw = yaml.safe_load(config_file.read_text())
+    raw["source"]["file"] = raw["source"]["file"].replace("bts_sample.csv", "bts_defects.csv")
+    bad_cfg = tmp_path / "bad.yaml"
+    bad_cfg.write_text(yaml.safe_dump(raw))
+    proc = subprocess.run(
+        [sys.executable, "-m", "crewopt.data", "build", "--config", str(bad_cfg)],
+        capture_output=True,
+        text=True,
+    )
+    assert proc.returncode == 2, proc.stderr
+    assert "valid: false" in proc.stdout

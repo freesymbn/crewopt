@@ -69,14 +69,14 @@ tasks first and see them fail before the implementation tasks.
 **Independent Test**: Seeded-defect fixture → every defect detected.
 
 ### Tests (write first)
-- [ ] T023 [P] [US2] Create seeded-defect fixture (arrival before departure, wrong tz, duplicate, missing tz, block time 2 min) in tests/fixtures/bts_defects.csv
-- [ ] T024 [P] [US2] Tests for blocking checks FR-013–016 in tests/data/test_validate.py
-- [ ] T025 [P] [US2] Tests for warning checks FR-017–020 (tail continuity, tail overlap, elapsed consistency, missing tail) in tests/data/test_validate.py
-- [ ] T026 [P] [US2] Integration test: defects fixture → `valid: false`, exit code 2 (SC-003) in tests/data/test_pipeline.py
+- [x] T023 [P] [US2] Create seeded-defect fixture (arrival before departure, wrong tz, duplicate, missing tz, block time 2 min) in tests/fixtures/bts_defects.csv
+- [x] T024 [P] [US2] Tests for blocking checks FR-013–016 in tests/data/test_validate.py
+- [x] T025 [P] [US2] Tests for warning checks FR-017–020 (tail continuity, tail overlap, elapsed consistency, missing tail) in tests/data/test_validate.py
+- [x] T026 [P] [US2] Integration test: defects fixture → `valid: false`, exit code 2 (SC-003) in tests/data/test_pipeline.py
 
 ### Implementation
-- [ ] T027 [US2] Implement ValidationReport and all checks in crewopt/data/validate.py
-- [ ] T028 [US2] Wire validation into pipeline, write validation.json, set exit codes in crewopt/data/pipeline.py and crewopt/data/__main__.py
+- [x] T027 [US2] Implement ValidationReport and all checks in crewopt/data/validate.py
+- [x] T028 [US2] Wire validation into pipeline, write validation.json, set exit codes in crewopt/data/pipeline.py and crewopt/data/__main__.py
 
 **Checkpoint**: Bad data can no longer pass silently.
 
