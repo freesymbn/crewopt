@@ -18,24 +18,24 @@ tasks first and see them fail before the implementation tasks.
 
 ## Phase 1: Setup
 
-- [ ] T001 Add `airportsdata` to dependencies in pyproject.toml and run `uv sync` (lock in uv.lock)
-- [ ] T002 [P] Create `config/data.yaml` with carrier, week_start, buffer_days=3, block_minutes range 20–480, elapsed_tolerance=5, base rule (max 3, share ≥ 0.5), candidate carriers [F9, NK]
-- [ ] T003 [P] Create test package `tests/data/__init__.py` and `tests/fixtures/` folder
+- [x] T001 Add `airportsdata` to dependencies in pyproject.toml and run `uv sync` (lock in uv.lock)
+- [x] T002 [P] Create `config/data.yaml` with carrier, week_start, buffer_days=3, block_minutes range 20–480, elapsed_tolerance=5, base rule (max 3, share ≥ 0.5), candidate carriers [F9, NK]
+- [x] T003 [P] Create test package `tests/data/__init__.py` and `tests/fixtures/` folder
 
 ---
 
 ## Phase 2: Foundational (blocks all stories)
 
-- [ ] T004 [P] Write tests for config loading and validation (missing keys, bad week date) in tests/data/test_config.py
-- [ ] T005 Implement `DataConfig` loader in crewopt/data/config.py
-- [ ] T006 [P] Write tests for airport reference (DEN, MCO, HNL, SJU tz; unknown code → None) in tests/data/test_airports.py
-- [ ] T007 Implement airport reference from airportsdata in crewopt/data/airports.py
-- [ ] T008 [P] Write tests for hhmm parsing ("905", "0", "2400", invalid "1260") in tests/data/test_timeconv.py
-- [ ] T009 [P] Write tests for local→UTC conversion and arrival inference (same-day, midnight crossing DEN→MCO, eastbound/westbound, HNL, DST-change date, nonexistent local time) in tests/data/test_timeconv.py
-- [ ] T010 Implement hhmm parsing, local→UTC conversion and arrival date inference in crewopt/data/timeconv.py
-- [ ] T011 [P] Create synthetic raw fixture covering all edge cases (≈50 rows, BTS column names) in tests/fixtures/bts_sample.csv
-- [ ] T012 [P] Write tests for reading only required columns from csv and zip in tests/data/test_bts.py
-- [ ] T013 Implement raw reader (csv or zip, required columns, dtypes) in crewopt/data/bts.py
+- [x] T004 [P] Write tests for config loading and validation (missing keys, bad week date) in tests/data/test_config.py
+- [x] T005 Implement `DataConfig` loader in crewopt/data/config.py
+- [x] T006 [P] Write tests for airport reference (DEN, MCO, HNL, SJU tz; unknown code → None) in tests/data/test_airports.py
+- [x] T007 Implement airport reference from airportsdata in crewopt/data/airports.py
+- [x] T008 [P] Write tests for hhmm parsing ("905", "0", "2400", invalid "1260") in tests/data/test_timeconv.py
+- [x] T009 [P] Write tests for local→UTC conversion and arrival inference (same-day, midnight crossing DEN→MCO, eastbound/westbound, HNL, DST-change date, nonexistent local time) in tests/data/test_timeconv.py
+- [x] T010 Implement hhmm parsing, local→UTC conversion and arrival date inference in crewopt/data/timeconv.py
+- [x] T011 [P] Create synthetic raw fixture covering all edge cases (≈50 rows, BTS column names) in tests/fixtures/bts_sample.csv
+- [x] T012 [P] Write tests for reading only required columns from csv and zip in tests/data/test_bts.py
+- [x] T013 Implement raw reader (csv or zip, required columns, dtypes) in crewopt/data/bts.py
 
 **Checkpoint**: config, airports, time conversion and raw reading are tested and green.
 
@@ -47,17 +47,17 @@ tasks first and see them fail before the implementation tasks.
 **Independent Test**: Build from the fixture; check row counts, UTC times, buffer flags and a hand-checked sample.
 
 ### Tests (write first)
-- [ ] T014 [P] [US1] Tests for carrier/window filtering, cancelled/diverted exclusion with counts, buffer flag in tests/data/test_clean.py
-- [ ] T015 [P] [US1] Tests for flight_id format, uniqueness and exact-duplicate removal in tests/data/test_clean.py
-- [ ] T016 [P] [US1] Test: unknown-time-zone airport → flight excluded and counted in tests/data/test_clean.py
-- [ ] T017 [P] [US1] Integration test: build on fixture produces parquet + meta with schema from data-model.md in tests/data/test_pipeline.py
-- [ ] T018 [P] [US1] Determinism test: two builds → equal data_sha256 (SC-004) in tests/data/test_pipeline.py
+- [x] T014 [P] [US1] Tests for carrier/window filtering, cancelled/diverted exclusion with counts, buffer flag in tests/data/test_clean.py
+- [x] T015 [P] [US1] Tests for flight_id format, uniqueness and exact-duplicate removal in tests/data/test_clean.py
+- [x] T016 [P] [US1] Test: unknown-time-zone airport → flight excluded and counted in tests/data/test_clean.py
+- [x] T017 [P] [US1] Integration test: build on fixture produces parquet + meta with schema from data-model.md in tests/data/test_pipeline.py
+- [x] T018 [P] [US1] Determinism test: two builds → equal data_sha256 (SC-004) in tests/data/test_pipeline.py
 
 ### Implementation
-- [ ] T019 [US1] Implement cleaning steps (filter, exclusions with reasons, tz attach, UTC, ids, dedupe, buffer flag, sort) in crewopt/data/clean.py
-- [ ] T020 [US1] Implement canonical data checksum and metadata assembly in crewopt/data/pipeline.py
-- [ ] T021 [US1] Implement output writing (parquet + meta.json) in crewopt/data/pipeline.py
-- [ ] T022 [US1] Implement CLI `build` in crewopt/data/__main__.py per contracts/cli.md
+- [x] T019 [US1] Implement cleaning steps (filter, exclusions with reasons, tz attach, UTC, ids, dedupe, buffer flag, sort) in crewopt/data/clean.py
+- [x] T020 [US1] Implement canonical data checksum and metadata assembly in crewopt/data/pipeline.py
+- [x] T021 [US1] Implement output writing (parquet + meta.json) in crewopt/data/pipeline.py
+- [x] T022 [US1] Implement CLI `build` in crewopt/data/__main__.py per contracts/cli.md
 
 **Checkpoint**: `build` on the fixture produces a correct, deterministic flight table.
 

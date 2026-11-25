@@ -57,8 +57,10 @@ def convert_schedule(df: pd.DataFrame) -> pd.DataFrame:
     arr_min, arr_off = parse_hhmm_series(out["crs_arr"])
 
     def at(minutes: pd.Series, offset: pd.Series) -> pd.Series:
-        return day + pd.to_timedelta(minutes.astype("float"), unit="m") + pd.to_timedelta(
-            offset.astype("float"), unit="D"
+        return (
+            day
+            + pd.to_timedelta(minutes.astype("float"), unit="m")
+            + pd.to_timedelta(offset.astype("float"), unit="D")
         )
 
     out["dep_local"] = at(dep_min, dep_off)

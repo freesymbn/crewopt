@@ -10,7 +10,8 @@
 | tail_number | string \| null | Aircraft registration; null allowed, flagged (FR-020) |
 | flight_date | date | Local scheduled departure date (as in BTS) |
 | origin, destination | string | IATA airport codes; origin ≠ destination (FR-015) |
-| dep_local, arr_local | timestamp (tz-aware, airport zone) | Scheduled local times |
+| origin_tz, dest_tz | string | IANA time zones of origin and destination |
+| dep_local, arr_local | timestamp (naive) | Scheduled local wall-clock times; their zone is origin_tz / dest_tz (a column cannot hold mixed time zones) |
 | dep_utc, arr_utc | timestamp (UTC) | arr_utc > dep_utc (FR-013) |
 | block_minutes | int | (arr_utc − dep_utc) in minutes; within configured range (FR-014) |
 | crs_elapsed_minutes | int | BTS scheduled elapsed time; cross-check (FR-019) |
